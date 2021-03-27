@@ -10,18 +10,24 @@ class CityWeatherForecastingModel:
     GlobalLandTemperaturesByCountry.csv file.
     
     Attributes:
-    - data (pd.DataFrame): GlobalLandTemperaturesByCountry.csv as as pandas
-        dataframe
-    - city_list (list): List of all cities for which models are to be created
-    - train_start (str): Start date of the training data. Format: "YYYY-MM-DD"
-    - train_end (str): End date of the training data. Format: "YYYY-MM-DD"
-    - test_start (str): Start date of the test data. Format: "YYYY-MM-DD"
-    - test_start (str): End date of the test data. Format: "YYYY-MM-DD"
-    - train_data (dict): Data the model was trained on. Keys are city names
-    - test_data (dict): Data the model can be evaluated on (not implemented).
-        Keys are city names.
-    - models (dict): The trained models for each city. Keys are city names.
-        available, after 'fit' method was called.
+        - data (pd.DataFrame): GlobalLandTemperaturesByCountry.csv as as
+            pandas dataframe
+        - city_list (list): List of all cities for which models are to be 
+            created
+        - train_start (str): Start date of the training data.
+            Format: "YYYY-MM-DD"
+        - train_end (str): End date of the training data.
+            Format: "YYYY-MM-DD"
+        - test_start (str): Start date of the test data.
+            Format: "YYYY-MM-DD"
+        - test_start (str): End date of the test data.
+            Format: "YYYY-MM-DD"
+        - train_data (dict): Data the model was trained on.
+            Keys are city names
+        - test_data (dict): Data the model can be evaluated on
+            (not implemented). Keys are city names.
+        - models (dict): The trained models for each city. Keys are city names.
+            available, after 'fit' method was called.
     """
     
     def __init__(self,
@@ -37,10 +43,10 @@ class CityWeatherForecastingModel:
                 be created
         
         Additional keyword args (kwargs):
-        - train_start (default: '1960-01-01')
-        - train_end (default: '1999-12-01')
-        - test_start (default: '2000-01-01')
-        - test_end (default: '2013-12-01')
+            - train_start (default: '1960-01-01')
+            - train_end (default: '1999-12-01')
+            - test_start (default: '2000-01-01')
+            - test_end (default: '2013-12-01')
         if they are not given, the default values are used.
         """
         self.data = data_df
@@ -134,9 +140,9 @@ class CityWeatherForecastingModel:
                                  data: pd.DataFrame
                                  ) -> Tuple[pd.Series, pd.Series]:
         """prepares train and test data:
-        - split data
-        - drop missing values
-        - select only 'AverageTemperature' column
+            - split data
+            - drop missing values
+            - select only 'AverageTemperature' column
         """
         train = data['AverageTemperature'][self.train_start:self.train_end].dropna()
         test = data['AverageTemperature'][self.test_start:self.test_end].dropna()
